@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import TaskCard from './components/TaskCard';
+import TaskComponent from './components/TaskComponent';
 import { mockTasks } from './mockData/tasks';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
     }}>
       <div className="tasks-container">
         {sortedTasks.map(task => (
-          <TaskCard 
+          <TaskComponent 
             key={task.id} 
             task={task}
             backgroundColor={backgroundColor}
