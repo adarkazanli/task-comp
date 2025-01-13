@@ -7,11 +7,20 @@ function App() {
   const tasks = mockTasks[0].items;
   const backgroundColor = '#000000';  // App background
   
-  // Define background colors for different task statuses
+  // Define background and font colors for different task statuses
   const taskColors = {
-    backlog: '#f8f9fa',    // Light gray for backlog tasks
-    planned: '#e8fffe',    // Light blue for planned tasks
-    closed: '#bbbbbb'      // Different gray for completed tasks
+    backlog: {
+      background: '#f8f9fa',    // Light gray for backlog tasks
+      font: '#000000'          // Black text for good contrast
+    },
+    planned: {
+      background: '#e8fffe',    // Light blue for planned tasks
+      font: '#000000'          // Black text for good contrast
+    },
+    closed: {
+      background: '#bbbbbb',    // Different gray for completed tasks
+      font: '#333333'          // Black text for good contrast
+    }
   };
 
   // Sort tasks by anticipated_start_time

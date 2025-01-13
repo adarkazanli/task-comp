@@ -10,12 +10,14 @@ const TaskComponent = ({ task, taskColors, backgroundColor, className }) => {
 
     // Get the appropriate background color based on task status
     const getBackgroundColor = (status) => {
-        return taskColors[status] || taskColors.backlog; // Default to backlog color if status not found
+        const colorScheme = taskColors[status] || taskColors.backlog;
+        return colorScheme.background;
     };
 
     // Get text color based on background
     const getTextColor = (status) => {
-        return status === 'closed' ? '#5f6368' : '#202124';
+        const colorScheme = taskColors[status] || taskColors.backlog;
+        return colorScheme.font;
     };
 
     const getRemainingTimeClass = (remainingTime) => {
@@ -120,9 +122,18 @@ TaskComponent.propTypes = {
     }).isRequired,
     backgroundColor: PropTypes.string.isRequired,
     taskColors: PropTypes.shape({
-        backlog: PropTypes.string.isRequired,
-        planned: PropTypes.string.isRequired,
-        closed: PropTypes.string.isRequired
+        backlog: PropTypes.shape({
+            background: PropTypes.string.isRequired,
+            font: PropTypes.string.isRequired
+        }).isRequired,
+        planned: PropTypes.shape({
+            background: PropTypes.string.isRequired,
+            font: PropTypes.string.isRequired
+        }).isRequired,
+        closed: PropTypes.shape({
+            background: PropTypes.string.isRequired,
+            font: PropTypes.string.isRequired
+        }).isRequired
     }).isRequired
 };
 
