@@ -154,7 +154,7 @@ The description field supports Markdown syntax through `react-markdown`. Example
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/react-task-component.git  
+git clone https://github.com/adarkazanli/task-comp  
 ```
 2. Install dependencies
 ```bash
@@ -184,12 +184,15 @@ MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Support
 
-For support, email support@example.com or open an issue in the GitHub repository.
+For support, email ammar@mpsinc.io or open an issue in the GitHub repository.
 
 ## Publishing to NPM
 
 1. Update version in `package.json`
 ```bash
+
+ "version": "0.1.9"
+ 
 npm version patch  # for bug fixes
 npm version minor  # for new features
 npm version major  # for breaking changes

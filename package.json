@@ -1,6 +1,6 @@
 {
   "name": "@mpsinc/task-component",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "A flexible React component for displaying task cards with time tracking",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -45,6 +45,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/task-component.git"
+    "url": "https://github.com/adarkazanli/task-comp"
   }
 }
