@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+import './TaskComponent.css';
 
 const TaskComponent = ({ task, taskColors, backgroundColor, className }) => {
     const formatTime = (time) => {

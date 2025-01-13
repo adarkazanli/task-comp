@@ -1,78 +1,188 @@
+# React Task Component
 
-# task-comp
-# Getting Started with Create React App
+A flexible and responsive React component for displaying task cards with time tracking and status management capabilities.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
 
-## Available Scripts
+```bash
+npm install @mpsinc/task-component
+```
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- 📊 Task status visualization
+- ⏱️ Time tracking and formatting
+- 🎨 Customizable color schemes
+- 📱 Responsive design
+- ✨ Markdown support for task descriptions
+- 🔄 Action buttons for task management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Usage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Basic Implementation
 
-### `npm test`
+```jsx
+import { TaskComponent } from 'react-task-component';
+const taskColors = {
+backlog: {
+background: '#f5f5f5',
+font: '#333333'
+},
+planned: {
+background: '#e3f2fd',
+font: '#1976d2'
+},
+closed: {
+background: '#e8f5e9',
+font: '#2e7d32'
+}
+};
+const task = {
+id: 1,
+title: "Complete Project Documentation",
+description: "Write comprehensive documentation for the project including:\n- Setup instructions\n- API endpoints\n- Usage examples",
+estimated_time: 120, // in minutes
+anticipated_start_time: "14:00",
+anticipated_end_time: "16:00",
+remaining_time: 45, // in minutes
+status: "planned"
+};
+function App() {
+return (
+<TaskComponent
+task={task}
+taskColors={taskColors}
+backgroundColor="#ffffff"
+/>
+);
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Props
 
-### `npm run build`
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| task | Object | Yes | Task data object |
+| taskColors | Object | Yes | Color schemes for different task statuses |
+| backgroundColor | String | Yes | Background color for the component |
+| className | String | No | Additional CSS classes |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Task Object Structure
+```typescript
+{
+id: number;
+title: string;
+description: string;
+estimated_time: number; // in minutes
+anticipated_start_time?: string; // format: "HH:mm"
+anticipated_end_time?: string; // format: "HH:mm"
+remaining_time: number; // in minutes
+status: "backlog" | "planned" | "closed";
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Color Scheme Structure
+```typescript
+{
+backlog: {
+background: string;
+font: string;
+},
+planned: {
+background: string;
+font: string;
+},
+closed: {
+background: string;
+font: string;
+}
+}
+```
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Styling
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The component comes with default styling, but you can override it by targeting the following CSS classes:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `.task-card` - Main container
+- `.task-main` - Title and controls section
+- `.task-controls` - Action buttons container
+- `.task-metadata` - Task information section
+- `.task-description` - Markdown content area
+- `.start-button` - Start action button
+- `.complete-button` - Complete action button
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Time Formatting
 
-## Learn More
+- Remaining time is automatically formatted:
+  - Less than 1 hour: "45 min"
+  - More than 1 hour: "2h 15m"
+  - Negative time: "-45 min" or "-2h 15m"
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Markdown Support
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The description field supports Markdown syntax through `react-markdown`. Example:
 
-### Code Splitting
+```markdown
+# Heading
+- List item 1
+- List item 2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Bold text** and *italic text*
 
-### Analyzing the Bundle Size
+## Subheading
+1. Numbered list
+2. Another item
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> This is a blockquote
 
-### Making a Progressive Web App
+[Link example](https://example.com)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- React 16.8.0 or higher
+- react-markdown
+- prop-types
 
-### `npm run build` fails to minify
+## Development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/react-task-component.git  
+```
+2. Install dependencies
+```bash
+npm install
+```
+3. Run the development server
+```bash
+npm start
+```
 
-### Publishing to NPM
+4. Build the component
+```bash
+npm run build
+```
 
-1. `npm run build`
-2. `npm login`
-3. `npm publish`
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Support
+
+For support, email support@example.com or open an issue in the GitHub repository.
+
+
