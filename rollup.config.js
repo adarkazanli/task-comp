@@ -1,12 +1,11 @@
+import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
-import babel from '@rollup/plugin-babel';
 
 export default {
-  input: 'src/index.js', // Changed this to point to index.js
+  input: 'src/lib/index.js',
   output: [
     {
       file: 'dist/index.js',
@@ -21,21 +20,21 @@ export default {
   ],
   plugins: [
     peerDepsExternal(),
-    postcss({
-      extensions: ['.css'],
-      minimize: true,
-      inject: {
-        insertAt: 'top'
-      }
+    resolve({
+      extensions: ['.js', '.jsx']
+    }),
+    commonjs({
+      include: 'node_modules/**'
     }),
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
-      presets: ['@babel/preset-react']
+      presets: ['@babel/preset-env', '@babel/preset-react'],
+      extensions: ['.js', '.jsx']
     }),
-    resolve(),
-    commonjs(),
-    terser()
+    postcss({
+      extensions: ['.css']
+    })
   ],
-  external: ['react', 'react-dom', 'react-markdown']
+  external: ['react', 'react-dom', 'prop-types', 'react-markdown']
 };

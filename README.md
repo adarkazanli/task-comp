@@ -23,38 +23,44 @@ npm install @mpsinc/task-component
 
 ```jsx
 import { TaskComponent } from 'react-task-component';
+
 const taskColors = {
-backlog: {
-background: '#f5f5f5',
-font: '#333333'
-},
-planned: {
-background: '#e3f2fd',
-font: '#1976d2'
-},
-closed: {
-background: '#e8f5e9',
-font: '#2e7d32'
-}
+  backlog: {
+    background: '#f5f5f5',
+    font: '#333333'
+  },
+  planned: {
+    background: '#e3f2fd',
+    font: '#1976d2'
+  },
+  closed: {
+    background: '#e8f5e9',
+    font: '#2e7d32'
+  }
 };
+
 const task = {
-id: 1,
-title: "Complete Project Documentation",
-description: "Write comprehensive documentation for the project including:\n- Setup instructions\n- API endpoints\n- Usage examples",
-estimated_time: 120, // in minutes
-anticipated_start_time: "14:00",
-anticipated_end_time: "16:00",
-remaining_time: 45, // in minutes
-status: "planned"
+  id: 1,
+  title: "Complete Project Documentation",
+  description: "Write comprehensive documentation for the project including:\n" +
+               "- Setup instructions\n" +
+               "- API endpoints\n" +
+               "- Usage examples",
+  estimated_time: 120, // in minutes
+  anticipated_start_time: "14:00",
+  anticipated_end_time: "16:00",
+  remaining_time: 45, // in minutes
+  status: "planned"
 };
+
 function App() {
-return (
-<TaskComponent
-task={task}
-taskColors={taskColors}
-backgroundColor="#ffffff"
-/>
-);
+  return (
+    <TaskComponent
+      task={task}
+      taskColors={taskColors}
+      backgroundColor="#ffffff"
+    />
+  );
 }
 ```
 
@@ -70,36 +76,34 @@ backgroundColor="#ffffff"
 ### Task Object Structure
 ```typescript
 {
-id: number;
-title: string;
-description: string;
-estimated_time: number; // in minutes
-anticipated_start_time?: string; // format: "HH:mm"
-anticipated_end_time?: string; // format: "HH:mm"
-remaining_time: number; // in minutes
-status: "backlog" | "planned" | "closed";
+  id: number;                        // Unique identifier for the task
+  title: string;                     // Task title
+  description: string;               // Markdown-supported description
+  estimated_time: number;            // Duration in minutes
+  anticipated_start_time?: string;   // Format: "HH:mm"
+  anticipated_end_time?: string;     // Format: "HH:mm"
+  remaining_time: number;            // Minutes remaining
+  status: "backlog" | "planned" | "closed";
 }
 ```
-
 
 ### Color Scheme Structure
 ```typescript
 {
-backlog: {
-background: string;
-font: string;
-},
-planned: {
-background: string;
-font: string;
-},
-closed: {
-background: string;
-font: string;
-}
+  backlog: {
+    background: string;   // CSS color value
+    font: string;        // CSS color value
+  },
+  planned: {
+    background: string;  // CSS color value
+    font: string;       // CSS color value
+  },
+  closed: {
+    background: string; // CSS color value
+    font: string;      // CSS color value
+  }
 }
 ```
-
 
 ## Styling
 
@@ -139,9 +143,6 @@ The description field supports Markdown syntax through `react-markdown`. Example
 
 [Link example](https://example.com)
 ```
-
-
-
 
 ## Dependencies
 
@@ -184,5 +185,45 @@ MIT License - see the [LICENSE.md](LICENSE.md) file for details
 ## Support
 
 For support, email support@example.com or open an issue in the GitHub repository.
+
+## Publishing to NPM
+
+1. Update version in `package.json`
+```bash
+npm version patch  # for bug fixes
+npm version minor  # for new features
+npm version major  # for breaking changes
+```
+
+2. Build the component
+```bash
+npm run build
+```
+
+3. Login to npm (if not already logged in)
+```bash
+npm login
+```
+
+4. Publish the package
+```bash
+npm publish --access public
+```
+
+Note: For scoped packages (@mpsinc/task-component), make sure you have the correct permissions and use --access public for the first publication.
+
+Key points to remember:
+1. Always test your build locally before publishing
+2. Use semantic versioning (major.minor.patch)
+3. Make sure your dist folder is included in the package but src is not
+4. Include all necessary peer dependencies in your package.json
+5. Test the published package in a new project before announcing the release
+6. After publishing, you can test your package by creating a new React project and installing it:
+
+```bash
+npx create-react-app test-app
+cd test-app
+npm install @mpsinc/task-component
+```
 
 

@@ -1,65 +1,50 @@
 {
   "name": "@mpsinc/task-component",
-  "version": "0.1.4",
-  "private": false,
+  "version": "0.1.8",
+  "description": "A flexible React component for displaying task cards with time tracking",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "style": "dist/index.css",
   "files": [
-    "dist",
-    "src/styles"
+    "dist"
   ],
-  "dependencies": {
-    "react-markdown": "^8.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/preset-react": "^7.26.3",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-terser": "^0.4.3",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "rollup": "^2.79.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "postcss": "^8.4.35",
-    "cssnano": "^6.0.3"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "rollup -c",
-    "prepare": "npm run build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "clean": "rm -rf dist"
+    "prepare": "npm run build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react-markdown": "^8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.16.7",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "rollup": "^2.70.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "task",
+    "time-tracking",
+    "task-management"
+  ],
+  "author": "Ammar Darkazanli",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/task-component.git"
   }
 }
