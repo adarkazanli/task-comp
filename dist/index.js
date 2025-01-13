@@ -42,38 +42,40 @@ function styleInject(css, ref) {
 var css_248z = "/* Main task card container */\n.task-card {\n    border-radius: 8px;\n    padding: 16px;\n    margin: 12px 0;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n    transition: all 0.2s ease-in-out;\n}\n\n.task-card:hover {\n    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n    transform: translateY(-2px);\n}\n\n/* Task main section */\n.task-main {\n    display: flex;\n    justify-content: space-between;\n    align-items: flex-start;\n    margin-bottom: 12px;\n}\n\n.task-main h1 {\n    font-size: 1.25rem;\n    margin: 0;\n    font-weight: 600;\n    flex: 1;\n}\n\n/* Task controls section */\n.task-controls {\n    display: flex;\n    gap: 8px;\n    align-items: center;\n}\n\n.time-estimate {\n    font-size: 0.9rem;\n    opacity: 0.8;\n}\n\n.start-button,\n.complete-button {\n    padding: 6px 12px;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    font-size: 0.9rem;\n    transition: background-color 0.2s;\n}\n\n.start-button {\n    background-color: #4CAF50;\n    color: white;\n}\n\n.complete-button {\n    background-color: #2196F3;\n    color: white;\n}\n\n.start-button:hover,\n.complete-button:hover {\n    opacity: 0.9;\n}\n\n/* Task metadata section */\n.task-metadata {\n    display: flex;\n    gap: 16px;\n    font-size: 0.9rem;\n    margin-bottom: 12px;\n    flex-wrap: wrap;\n}\n\n.task-id {\n    opacity: 0.7;\n}\n\n.task-time {\n    display: inline-block;\n}\n\n.task-remaining {\n    display: inline-block;\n}\n\n.task-remaining.negative {\n    color: #f44336;\n}\n\n/* Task description section */\n.task-description {\n    font-size: 0.95rem;\n    line-height: 1.5;\n    margin-top: 12px;\n    padding-top: 12px;\n    border-top: 1px solid rgba(0, 0, 0, 0.1);\n}\n\n/* Markdown content styling */\n.task-description p {\n    margin: 0 0 8px 0;\n}\n\n.task-description p:last-child {\n    margin-bottom: 0;\n}\n\n/* Responsive design */\n@media (max-width: 600px) {\n    .task-main {\n        flex-direction: column;\n        gap: 12px;\n    }\n\n    .task-controls {\n        width: 100%;\n        justify-content: flex-start;\n    }\n\n    .task-metadata {\n        flex-direction: column;\n        gap: 8px;\n    }\n} ";
 styleInject(css_248z);
 
-var TaskComponent = function TaskComponent(_ref) {
-  var task = _ref.task,
-    taskColors = _ref.taskColors;
-    _ref.backgroundColor;
-    _ref.className;
-  var formatTime = function formatTime(time) {
+const TaskComponent = _ref => {
+  let {
+    task,
+    taskColors,
+    backgroundColor,
+    className
+  } = _ref;
+  const formatTime = time => {
     if (!time) return '--:--';
     return time;
   };
 
   // Get the appropriate background color based on task status
-  var getBackgroundColor = function getBackgroundColor(status) {
-    var colorScheme = taskColors[status] || taskColors.backlog;
+  const getBackgroundColor = status => {
+    const colorScheme = taskColors[status] || taskColors.backlog;
     return colorScheme.background;
   };
 
   // Get text color based on background
-  var getTextColor = function getTextColor(status) {
-    var colorScheme = taskColors[status] || taskColors.backlog;
+  const getTextColor = status => {
+    const colorScheme = taskColors[status] || taskColors.backlog;
     return colorScheme.font;
   };
-  var getRemainingTimeClass = function getRemainingTimeClass(remainingTime) {
+  const getRemainingTimeClass = remainingTime => {
     return remainingTime < 0 ? 'task-remaining negative' : 'task-remaining';
   };
-  var formatRemainingTime = function formatRemainingTime(remainingTime) {
-    var absoluteTime = Math.abs(Math.round(remainingTime));
+  const formatRemainingTime = remainingTime => {
+    const absoluteTime = Math.abs(Math.round(remainingTime));
     if (absoluteTime < 60) {
       return "".concat(remainingTime < 0 ? '-' : '').concat(absoluteTime, " min");
     }
-    var hours = Math.floor(absoluteTime / 60);
-    var minutes = absoluteTime % 60;
-    var formattedTime = '';
+    const hours = Math.floor(absoluteTime / 60);
+    const minutes = absoluteTime % 60;
+    let formattedTime = '';
     if (hours > 0) {
       formattedTime += "".concat(hours, "h");
     }
@@ -82,7 +84,7 @@ var TaskComponent = function TaskComponent(_ref) {
     }
     return "".concat(remainingTime < 0 ? '-' : '').concat(formattedTime);
   };
-  var renderActionButtons = function renderActionButtons(status) {
+  const renderActionButtons = status => {
     if (status === 'closed') {
       return null; // Don't show any buttons for completed tasks
     }
@@ -92,7 +94,7 @@ var TaskComponent = function TaskComponent(_ref) {
       className: "complete-button"
     }, "\u2713 Complete"));
   };
-  var renderAnticipatedTime = function renderAnticipatedTime(status, startTime, endTime) {
+  const renderAnticipatedTime = (status, startTime, endTime) => {
     if (status === 'closed') {
       return null;
     }
@@ -100,7 +102,7 @@ var TaskComponent = function TaskComponent(_ref) {
       className: "task-time"
     }, "Anticipated: ", formatTime(startTime), " - ", formatTime(endTime));
   };
-  var renderRemainingTime = function renderRemainingTime(status, remainingTime) {
+  const renderRemainingTime = (status, remainingTime) => {
     if (status === 'closed') {
       return null;
     }

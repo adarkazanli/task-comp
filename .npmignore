@@ -7,6 +7,10 @@ public/
 .eslintrc
 .prettierrc
 rollup.config.js
+public/
+src/App.js
+src/index.js
+src/setupTests.js
 
 # Build tools
 webpack.config.js
